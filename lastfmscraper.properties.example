@@ -1,0 +1,13 @@
+#API access details last.fm will give you when you register for an API account
+lastfm.apikey=
+lastfm.sharedsecret=
+lastfm.registeredto=
+
+#specify the last.fm user the scraper will use to start scraping data
+app.userseed=
+
+#database settings
+postgres.user.name=
+postgres.user.password=
+postgres.schema=
+postgres.address=
