@@ -2,6 +2,8 @@
 lastfm.apikey=
 lastfm.sharedsecret=
 lastfm.registeredto=
+lastfm.api.url=
+lastfm.request.delay=
 
 #specify the last.fm user the scraper will use to start scraping data
 app.userseed=
@@ -11,3 +13,4 @@ postgres.user.name=
 postgres.user.password=
 postgres.schema=
 postgres.address=
+postgres.port=

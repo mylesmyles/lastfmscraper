@@ -2,3 +2,4 @@ lastfmscraper.properties
 .gradle
 bin
 build
+target
