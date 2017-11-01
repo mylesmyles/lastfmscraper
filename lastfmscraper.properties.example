@@ -11,6 +11,6 @@ app.userseed=
 #database settings
 postgres.user.name=
 postgres.user.password=
-postgres.schema=
+postgres.database=
 postgres.address=
 postgres.port=

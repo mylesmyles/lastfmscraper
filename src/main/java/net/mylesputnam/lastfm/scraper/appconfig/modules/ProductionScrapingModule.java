@@ -2,8 +2,8 @@ package net.mylesputnam.lastfm.scraper.appconfig.modules;
 
 import java.util.Map;
 
-import net.mylesputnam.lastfm.scraper.db.DatabaseConnection;
-import net.mylesputnam.lastfm.scraper.db.ScraperDatabase;
+import net.mylesputnam.lastfm.scraper.db.SchemaValidator;
+import net.mylesputnam.lastfm.scraper.db.ScraperDatabaseConnector;
 import net.mylesputnam.lastfm.scraper.queues.LastFmRequestQueue;
 import net.mylesputnam.lastfm.scraper.queues.LastFmWebRequestScheduler;
 import net.mylesputnam.lastfm.scraper.settings.ScraperSetting;
@@ -19,11 +19,12 @@ public class ProductionScrapingModule extends ScrapingModule {
 	@Override
 	protected void configure() {
 		initSettings();
-		bind(ScraperDatabase.class).to(DatabaseConnection.class);
 		bind(LastFmRequestQueue.class);
 		bind(RequestSender.class);
 		bind(RequestSpacer.class);
 		bind(LastFmWebRequestScheduler.class);
+		bind(ScraperDatabaseConnector.class);
+		bind(SchemaValidator.class);
 	}
 
 	private void initSettings() {

@@ -16,8 +16,9 @@ import net.mylesputnam.lastfm.scraper.appconfig.bindings.LastFmRegisteredTo;
 import net.mylesputnam.lastfm.scraper.appconfig.bindings.LastFmRequestDelay;
 import net.mylesputnam.lastfm.scraper.appconfig.bindings.LastFmSharedSecretKey;
 import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresAddress;
+import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresDatabaseName;
+import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresDatabaseSchema;
 import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresPort;
-import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresSchemaName;
 import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresUserPassword;
 import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresUsername;
 import net.mylesputnam.lastfm.scraper.appconfig.bindings.ScraperUserSeed;
@@ -33,9 +34,11 @@ public enum ScraperSetting {
 	SCRAPER_USER_SEED("app.userseed","last.fm user for initial datapoint",ScraperUserSeed.class),
 	POSTGRES_USERNAME("postgres.user.name","postgres database user username",PostgresUsername.class),
 	POSTGRES_USER_PASSWORD("postgres.user.password","postgres database user password",PostgresUserPassword.class),
-	POSTGRES_SCHEMA_NAME("postgres.schema","postgres schema name",PostgresSchemaName.class),
+	POSTGRES_DATABASE_NAME("postgres.database","postgres database name",PostgresDatabaseName.class),
+	POSTGRES_DATABASE_SCHEMA("postgres.database.schema", "postgres database schema", PostgresDatabaseSchema.class),
 	POSTGRES_ADDRESS("postgres.address","postgres database IP address or url",PostgresAddress.class),
-	POSTGRES_PORT("postgres.port","postgres database port",PostgresPort.class);
+	POSTGRES_PORT("postgres.port","postgres database port",PostgresPort.class),
+	;
 	
 	public final String propertyValue;
 	public final String propertyDescription;

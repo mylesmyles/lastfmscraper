@@ -9,6 +9,7 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 
 import net.mylesputnam.lastfm.scraper.appconfig.modules.ProductionScrapingModule;
+import net.mylesputnam.lastfm.scraper.scraper.ScraperBuilder;
 
 public class ScraperSettings {
 	private final Map<ScraperSetting, String> properties;
@@ -26,8 +27,8 @@ public class ScraperSettings {
 		}
 	}
 	
-	public Injector initConfigAndGetInjector(Class<? extends Module> module) {
-		return Guice.createInjector(new ProductionScrapingModule(properties));
+	public ScraperBuilder initConfigAndGetScraperBuilder() {
+		return ScraperBuilder.create(new ProductionScrapingModule(properties));
 	}
 	
 	private List<String> getSettingsErrors(Map<ScraperSetting, String> properties) {
