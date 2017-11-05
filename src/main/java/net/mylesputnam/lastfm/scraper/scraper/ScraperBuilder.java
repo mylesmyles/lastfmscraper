@@ -1,19 +1,16 @@
 package net.mylesputnam.lastfm.scraper.scraper;
 
-import java.sql.Connection;
-
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
 import net.mylesputnam.lastfm.scraper.appconfig.modules.ScrapingModule;
-import net.mylesputnam.lastfm.scraper.db.SchemaValidator;
-import net.mylesputnam.lastfm.scraper.db.ScraperDatabaseConnector;
-import net.mylesputnam.lastfm.scraper.queues.LastFmRequestQueue;
+import net.mylesputnam.lastfm.scraper.db.validation.DatabaseValidator;
 import net.mylesputnam.lastfm.scraper.webrequests.LastFmRequest;
+import net.mylesputnam.lastfm.scraper.webrequests.RequestSender;
+import net.mylesputnam.lastfm.scraper.webrequests.UserDataRequest;
 
 public class ScraperBuilder {
 	public final Injector scraperInjector;
-	
 	
 	public static ScraperBuilder create(ScrapingModule scraperModule) {
 		return new ScraperBuilder(scraperModule);
@@ -25,15 +22,17 @@ public class ScraperBuilder {
 	
 	public LastFmRequest getFirstRequest() {
 		verifyDatabaseSchema();
-		return null;
+		
+		return new UserDataRequest("mylesmyles07");
+	}
+	
+	public RequestSender getRequestSender() {
+		return this.scraperInjector.getInstance(RequestSender.class);
 	}
 	
 	private void verifyDatabaseSchema() {
-		SchemaValidator validator = scraperInjector.getInstance(SchemaValidator.class);
-		validator.validateSchema();
+		DatabaseValidator validator = scraperInjector.getInstance(DatabaseValidator.class);
+		validator.validateDatabase();
 	}
 	
-	public LastFmRequestQueue getRequestQueue() {
-		return scraperInjector.getInstance(LastFmRequestQueue.class);
-	}
 }

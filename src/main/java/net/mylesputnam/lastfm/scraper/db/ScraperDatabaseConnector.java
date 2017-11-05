@@ -37,11 +37,6 @@ public class ScraperDatabaseConnector {
 		this.port = port;
 		this.databaseName = databaseName;
 		this.databaseSchema = databaseSchema;
-		disableJdbcLogging();
-	}
-	
-	private void disableJdbcLogging() {
-		DriverManager.setLogWriter(null);
 	}
 	
 	public Connection dbConnection() {
