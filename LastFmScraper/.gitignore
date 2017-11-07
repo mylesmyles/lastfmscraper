@@ -1,4 +1,5 @@
 lastfmscraper.properties
-bin
-build
-target
+target/
+.classpath
+.project
+.settings/
