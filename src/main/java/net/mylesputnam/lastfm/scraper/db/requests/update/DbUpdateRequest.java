@@ -1,4 +1,4 @@
-package net.mylesputnam.lastfm.scraper.db.requests;
+package net.mylesputnam.lastfm.scraper.db.requests.update;
 
 import java.sql.Connection;
 import java.sql.SQLException;

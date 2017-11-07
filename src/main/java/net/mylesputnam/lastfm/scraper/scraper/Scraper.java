@@ -1,13 +1,18 @@
 package net.mylesputnam.lastfm.scraper.scraper;
 
-import net.mylesputnam.lastfm.scraper.webrequests.LastFmRequest;
-import net.mylesputnam.lastfm.scraper.webrequests.RequestSender;
+import net.mylesputnam.lastfm.scraper.exceptions.NoScraperTaskFoundException;
 
 public class Scraper {
-	public static void start(ScraperBuilder builder) {
-		LastFmRequest request = builder.getFirstRequest();
-		RequestSender sender = builder.getRequestSender();
-		
-		sender.sendRequest(request);
+	public static void start(ScraperTaskFetcher scraperTaskFetcher) {
+		try {
+//			while(true) { //TODO: add handler for when application gets exit signal
+			ScraperTask scraperTask = scraperTaskFetcher.fetchNextTask();
+			scraperTask.runTask();
+			System.out.println("Task is complete!");
+//			}
+		}
+		catch (NoScraperTaskFoundException e) {
+			System.out.println("Exiting application: Could not identify anything to pull from lastfm!");
+		}
 	}
 }

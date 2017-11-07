@@ -8,4 +8,9 @@ public class LastFmUser {
 		this.username = username;
 		this.url = url;
 	}
+
+	@Override
+	public String toString() {
+		return "LastFmUser [username=" + username + ", url=" + url + "]";
+	}
 }

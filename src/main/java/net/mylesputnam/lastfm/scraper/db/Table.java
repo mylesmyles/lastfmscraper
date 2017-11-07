@@ -16,4 +16,9 @@ public enum Table {
 		this.name = name;
 		this.columns = StaticList.create(Arrays.asList(columns));
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 }

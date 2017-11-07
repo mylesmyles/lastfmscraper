@@ -12,7 +12,7 @@ import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresDatabaseName;
 import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresDatabaseSchema;
 import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresPort;
 import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresUsername;
-import net.mylesputnam.lastfm.scraper.exceptions.DbConnectionError;
+import net.mylesputnam.lastfm.scraper.exceptions.DbConnectionException;
 
 public class ScraperDatabaseConnector {
 	
@@ -39,7 +39,7 @@ public class ScraperDatabaseConnector {
 		this.databaseSchema = databaseSchema;
 	}
 	
-	public Connection dbConnection() {
+	public Connection newDbConnection() {
 		int attemptsLeft = dbConnectionAttempts;
 		int retryDelayMs = 0;
 		while(attemptsLeft > 0) {
@@ -57,7 +57,7 @@ public class ScraperDatabaseConnector {
 			}
 		}
 		
-		throw new DbConnectionError(
+		throw new DbConnectionException(
 				"Could not connect to database after retrying " + dbConnectionAttempts + " times!");
 	}
 	

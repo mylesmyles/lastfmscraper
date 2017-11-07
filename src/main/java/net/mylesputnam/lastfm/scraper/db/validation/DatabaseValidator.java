@@ -10,7 +10,7 @@ import net.mylesputnam.lastfm.scraper.appconfig.bindings.PostgresDatabaseSchema;
 import net.mylesputnam.lastfm.scraper.data.LastFmUser;
 import net.mylesputnam.lastfm.scraper.db.ScraperDatabaseConnector;
 import net.mylesputnam.lastfm.scraper.db.Table;
-import net.mylesputnam.lastfm.scraper.db.requests.CreateUserRequest;
+import net.mylesputnam.lastfm.scraper.db.requests.update.InsertUserRequest;
 import net.mylesputnam.lastfm.scraper.exceptions.DbValidationException;
 
 public class DatabaseValidator {
@@ -20,7 +20,7 @@ public class DatabaseValidator {
 
 	@Inject
 	public DatabaseValidator(ScraperDatabaseConnector dbConnector, @PostgresDatabaseSchema String schema) {
-		this.connection = dbConnector.dbConnection();
+		this.connection = dbConnector.newDbConnection();
 		this.schema = schema;
 	}
 	

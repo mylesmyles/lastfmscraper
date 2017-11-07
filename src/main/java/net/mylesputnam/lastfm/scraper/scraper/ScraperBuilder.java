@@ -5,9 +5,6 @@ import com.google.inject.Injector;
 
 import net.mylesputnam.lastfm.scraper.appconfig.modules.ScrapingModule;
 import net.mylesputnam.lastfm.scraper.db.validation.DatabaseValidator;
-import net.mylesputnam.lastfm.scraper.webrequests.LastFmRequest;
-import net.mylesputnam.lastfm.scraper.webrequests.RequestSender;
-import net.mylesputnam.lastfm.scraper.webrequests.UserDataRequest;
 
 public class ScraperBuilder {
 	public final Injector scraperInjector;
@@ -20,19 +17,11 @@ public class ScraperBuilder {
 		this.scraperInjector = Guice.createInjector(scraperGuiceModule);
 	}
 	
-	public LastFmRequest getFirstRequest() {
-		verifyDatabaseSchema();
-		
-		return new UserDataRequest("mylesmyles07");
+	public DatabaseValidator getDatabaseValidator() {
+		return scraperInjector.getInstance(DatabaseValidator.class);
 	}
 	
-	public RequestSender getRequestSender() {
-		return this.scraperInjector.getInstance(RequestSender.class);
+	public ScraperTaskFetcher getScraperTaskFetcher() {
+		return scraperInjector.getInstance(ScraperTaskFetcher.class);
 	}
-	
-	private void verifyDatabaseSchema() {
-		DatabaseValidator validator = scraperInjector.getInstance(DatabaseValidator.class);
-		validator.validateDatabase();
-	}
-	
 }
